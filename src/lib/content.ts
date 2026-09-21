@@ -81,6 +81,20 @@ export const PROJECTS = [
   },
 ] as const;
 
+export const FOUNDER = {
+  name: "Caleb Kawano",
+  role: "Founder / Builder",
+  lead: "Building focused tools for needs he knows firsthand.",
+  highlights: [
+    "Helped design growth & oversaw up to 400 experts at AfterQuery, an AI research lab.",
+    "Led growth at Wander Social through its pre-seed round.",
+    "Has over 5M views across Instagram and Tiktok",
+  ],
+  studioNote:
+    "Variance began with a simple question during quant interview prep: why can't this practice fit into the five minutes you already have? Bread grew from the desire to stay consistent in Scripture. pAIr is being built to make shared groceries and meal planning feel lighter for real households.",
+  linkedin: "https://www.linkedin.com/in/caleb-kawano",
+} as const;
+
 export const PRINCIPLES_INTRO = {
   lead: "We build from ",
   life: "problems we’ve lived.",

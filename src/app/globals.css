@@ -18,6 +18,25 @@ html {
   scroll-padding-top: 4rem;
 }
 
+/* Anchor jumps land past each section's own top padding, so the label sits
+   just under the nav instead of a screen of empty space. Negative margin
+   nets against scroll-padding-top above. */
+#portfolio,
+#principles,
+#studio,
+#contact {
+  scroll-margin-top: -4rem;
+}
+
+@media (min-width: 768px) {
+  #portfolio,
+  #principles,
+  #studio,
+  #contact {
+    scroll-margin-top: -6rem;
+  }
+}
+
 body {
   background: var(--color-ink);
   color: var(--color-bone);

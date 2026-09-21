@@ -6,13 +6,49 @@ import { Container, SectionLabel } from "./Shell";
 const FIELD =
   "w-full border border-hair bg-transparent px-4 py-3.5 text-sm text-bone caret-accent transition-colors duration-200 outline-none placeholder:text-ash/60 focus:border-accent";
 
-export function Contact() {
-  const [sent, setSent] = useState(false);
+type Status = "idle" | "sending" | "sent" | "error";
 
-  // MVP scaffold — nothing is transmitted.
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+export function Contact() {
+  const [status, setStatus] = useState<Status>("idle");
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSent(true);
+    if (status === "sending") return;
+
+    const form = event.currentTarget;
+    const data = new FormData(form);
+
+    setStatus("sending");
+    setError(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: String(data.get("email") ?? ""),
+          message: String(data.get("message") ?? ""),
+          company: String(data.get("company") ?? ""),
+        }),
+      });
+
+      const result = (await response.json().catch(() => null)) as {
+        error?: string;
+      } | null;
+
+      if (!response.ok) {
+        setError(result?.error ?? "Something went wrong. Try again?");
+        setStatus("error");
+        return;
+      }
+
+      form.reset();
+      setStatus("sent");
+    } catch {
+      setError("Network trouble. Try again?");
+      setStatus("error");
+    }
   }
 
   return (
@@ -44,6 +80,7 @@ export function Contact() {
                 type="email"
                 name="email"
                 required
+                autoComplete="email"
                 placeholder="you@domain.com"
                 className={`${FIELD} mt-3`}
               />
@@ -57,26 +94,41 @@ export function Contact() {
                 name="message"
                 rows={5}
                 required
+                maxLength={5000}
                 placeholder="A few lines is plenty. What are your thoughts?"
                 className={`${FIELD} mt-3 resize-none`}
               />
             </label>
 
-            <div className="flex items-center gap-6">
+            {/* honeypot — hidden from people, catnip for bots */}
+            <input
+              type="text"
+              name="company"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="pointer-events-none absolute -left-[9999px] size-px opacity-0"
+            />
+
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
               <button
                 type="submit"
-                className="border border-hair px-8 py-4 font-mono text-xs uppercase tracking-[0.2em] text-bone transition-colors duration-300 hover:border-accent"
+                disabled={status === "sending"}
+                className="border border-hair px-8 py-4 font-mono text-xs uppercase tracking-[0.2em] text-bone transition-colors duration-300 hover:border-accent disabled:cursor-not-allowed disabled:text-ash disabled:hover:border-hair"
               >
-                Send
+                {status === "sending" ? "Sending" : "Send"}
               </button>
-              {sent && (
-                <span
-                  role="status"
-                  className="font-mono text-xs uppercase tracking-[0.18em] text-ash"
-                >
-                  Queued — scaffold only
-                </span>
-              )}
+
+              <span
+                role="status"
+                aria-live="polite"
+                className={`font-mono text-xs uppercase tracking-[0.18em] ${
+                  status === "error" ? "text-accent" : "text-ash"
+                }`}
+              >
+                {status === "sent" && "Sent — we'll be in touch."}
+                {status === "error" && error}
+              </span>
             </div>
           </form>
         </div>
