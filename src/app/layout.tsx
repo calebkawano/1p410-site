@@ -12,10 +12,26 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+const DESCRIPTION =
+  "1P410 is an independent studio creating focused apps for quantitative practice, Scripture reading, and everyday household life.";
+
 export const metadata: Metadata = {
+  // resolves the icon and share-card paths to absolute URLs
+  metadataBase: new URL("https://1p410.net"),
   title: "1P410 Technologies",
-  description:
-    "1P410 is an independent studio creating focused apps for quantitative practice, Scripture reading, and everyday household life.",
+  description: DESCRIPTION,
+  openGraph: {
+    type: "website",
+    siteName: "1P410 Technologies",
+    title: "1P410 Technologies",
+    description: DESCRIPTION,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "1P410 Technologies",
+    description: DESCRIPTION,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
