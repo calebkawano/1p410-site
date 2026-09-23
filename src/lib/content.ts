@@ -15,7 +15,7 @@ export const HERO = {
   headline: ["We make software", "built for"],
   headlineAccent: "you.",
   subhead:
-    "We know that each person is unique with their own needs. We don't build to replace people or tools, but to aid each person in their daily life.",
+    "We know that each person is unique, with their own needs. We don't build to replace people or tools, but to aid each person in their daily life.",
   cta: { label: "See our work", href: "#portfolio" },
   status: "BUILDING FOR YOU",
 } as const;
@@ -27,7 +27,7 @@ export const PROJECTS = [
     descriptor: "The Quant Prep App",
     slug: "variance",
     tagline: "Quant interview practice, anytime, anywhere, fully offline.",
-    body: "Helping people in over 40 countries, 80 universities, with over 1000,000 games played to date.",
+    body: "Used in over 40 countries and at 80 universities, with over 100,000 games played to date.",
     tags: ["iOS", "SwiftUI", "Live"],
     website: "https://thequantprepapp.com",
     websiteLabel: "Visit site",
@@ -47,7 +47,7 @@ export const PROJECTS = [
     fullName: "Bread: The Bible Tracker",
     descriptor: "The Bible Tracker",
     slug: "bread",
-    tagline: "Help follow your progress. No Tracking. Always Offline. Always Secure",
+    tagline: "Follow your progress. No tracking. Always offline. Always secure.",
     body: "Start a reading plan, see your notes, and see the progress of your journey.",
     tags: ["iOS", "SwiftUI", "Live"],
     website: "https://thebibletracker.app",
@@ -68,7 +68,7 @@ export const PROJECTS = [
     fullName: "pAIr",
     descriptor: null,
     slug: "pair",
-    tagline: "Plan meals. Share the list. Save Time & Money.",
+    tagline: "Plan meals. Share the list. Save time and money.",
     body: "Shared groceries, household requests, and practical meal inspiration in one place.",
     tags: ["iOS", "iPadOS", "Coming soon"],
     //website: "https://pair-grocery-planner.bck314.chatgpt.site",
@@ -86,9 +86,9 @@ export const FOUNDER = {
   role: "Founder / Builder",
   lead: "Building focused tools for needs he knows firsthand.",
   highlights: [
-    "Helped design growth & oversaw up to 400 experts at AfterQuery, an AI research lab.",
+    "Helped design growth and oversaw up to 400 experts at AfterQuery, an AI research lab.",
     "Led growth at Wander Social through its pre-seed round.",
-    "Has over 5M views across Instagram and Tiktok",
+    "Has over 5M views across Instagram and TikTok.",
   ],
   studioNote:
     "Variance began with a simple question during quant interview prep: why can't this practice fit into the five minutes you already have? Bread grew from the desire to stay consistent in Scripture. pAIr is being built to make shared groceries and meal planning feel lighter for real households.",
@@ -97,9 +97,9 @@ export const FOUNDER = {
 
 export const PRINCIPLES_INTRO = {
   lead: "We build from ",
-  life: "problems we’ve lived.",
-  bridge: "To help as many people as we can. Guided by service and made with",
-  purpose: " joyisness, curiosity, and gratitude.",
+  life: "problems we’ve lived",
+  bridge: " to help as many people as we can. Guided by service and made with ",
+  purpose: "joy, curiosity, and gratitude.",
 } as const;
 
 export const PRINCIPLES = [
@@ -120,7 +120,7 @@ export const PRINCIPLES = [
   },
 ] as const;
 
-export const ORIGIN_LINE = '1 Peter 4:10 -"Each of you should use whatever gift you have received to serve others, as faithful stewards of God’s grace in its various forms."';
+export const ORIGIN_LINE = '1 Peter 4:10 — “Each of you should use whatever gift you have received to serve others, as faithful stewards of God’s grace in its various forms.”';
 
 export const FOOTER_LINKS = [
   { label: "Variance", href: "https://thequantprepapp.com" },
